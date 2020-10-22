@@ -12,4 +12,12 @@ class Movie < ActiveRecord::Base
       self.where(rating: ratings)
     end
   end
+  
+  def self.title_sorted
+    self.order(:title)
+  end
+  
+  def self.date_sorted
+    self.order(:release_date)
+  end
 end
