@@ -8,13 +8,12 @@
   <% @all_ratings.each do |rating| %>
     <div class="form-check  form-check-inline">
       <%= label_tag "ratings[#{rating}]", rating, class: 'form-check-label' %>
-      <%= check_box_tag "ratings[#{rating}]", "1",  @ratings_to_show.include?(rating), class: 'form-check-input' %>
+      <%= check_box_tag "ratings[#{rating}]", "1",  @ratings_to_show.include?(rating), class: 'form-check-input', checked:true %>
     </div>
   <% end %>
   <%= hidden_field_tag(:title_sorted, params[:title_sorted]) %>
   <%= hidden_field_tag(:date_sorted, params[:date_sorted]) %>
   <%= submit_tag 'Refresh', id: 'ratings_submit', class: 'btn btn-primary' %>
-<% end %>
 
 <table class="table table-striped col-md-12" id="movies">
   <thead>
@@ -44,5 +43,5 @@
     <% end %>
   </tbody>
 </table>
-
+<% end %>
 <%= link_to 'Add new movie', new_movie_path, :class => 'btn btn-primary' %>
