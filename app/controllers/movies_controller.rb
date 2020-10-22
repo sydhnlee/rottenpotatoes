@@ -8,8 +8,13 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     
+    puts
+    if (params.keys & ["ratings", "title_sorted", "date_sorted"]).empty?
+      redirect_to movies_path(:title_sorted=>session[:sorted_title], :date_sorted=>session[:sorted_date], :ratings=>Hash[session[:rating].collect {|r| [r, 1]}])
+    end
+    
     if params[:ratings].nil?
-      @ratings_to_show = []
+      @ratings_to_show = @all_ratings
     else
       @ratings_to_show = params[:ratings].keys
     end
