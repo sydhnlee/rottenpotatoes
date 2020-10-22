@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
+    
     if params[:ratings].nil?
       @ratings_to_show = []
     else
@@ -19,10 +20,15 @@ class MoviesController < ApplicationController
       @movies = @movies.title_sorted
       @title_color = "bg-warning"
     end 
+    
     if params[:date_sorted] == "true"
       @movies = @movies.date_sorted
       @date_color = "bg-warning"
     end 
+    
+    session[:rating] = @ratings_to_show
+    session[:sorted_date] = params[:date_sorted]
+    session[:sorted_title] = params[:title_sorted]
   end
 
   def new
