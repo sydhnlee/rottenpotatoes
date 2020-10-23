@@ -8,7 +8,8 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     
-    if (params.keys & ["ratings", "title_sorted", "date_sorted"]).empty?
+    puts session.keys
+    if params.keys == ["controller", "action"] && (session[:rating] != nil || session[:sorted_date] != nil || session[:sorted_title] != nil)
       redirect_to movies_path(:title_sorted=>session[:sorted_title], :date_sorted=>session[:sorted_date])
     end
     
@@ -33,6 +34,7 @@ class MoviesController < ApplicationController
     session[:rating] = @ratings_to_show
     session[:sorted_date] = params[:date_sorted]
     session[:sorted_title] = params[:title_sorted]
+   
   end
 
   def new
