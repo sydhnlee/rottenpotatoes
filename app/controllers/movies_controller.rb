@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     
     if (params.keys & ["ratings", "title_sorted", "date_sorted"]).empty?
-      redirect_to movies_path(:title_sorted=>session[:sorted_title], :date_sorted=>session[:sorted_date], :ratings=>Hash[session[:rating].collect {|r| [r, 1]}])
+      redirect_to movies_path(:title_sorted=>session[:sorted_title], :date_sorted=>session[:sorted_date])
     end
     
     if params[:ratings].nil?
