@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
     
     puts session.keys
     if params.keys == ["controller", "action"] && (session[:rating] != nil || session[:sorted_date] != nil || session[:sorted_title] != nil)
-      redirect_to movies_path(:title_sorted=>session[:sorted_title], :date_sorted=>session[:sorted_date])
+      redirect_to movies_path(:title_sorted=>session[:sorted_title], :date_sorted=>session[:sorted_date], :ratings=>Hash[session[:rating].collect {|r| [r, 1]}])
     end
     
     if params[:ratings].nil?
